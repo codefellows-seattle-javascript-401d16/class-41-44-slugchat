@@ -1,18 +1,19 @@
 'use strict'
 
 // DEPENDECIES
+import faker from 'faker'
 import * as bcrypt from 'bcrypt'
 import {randomBytes} from 'crypto'
 import * as jwt from 'jsonwebtoken'
 import createError from 'http-errors'
-import {promisify} from '../lib/promisify.js'
 import Mongoose, {Schema} from 'mongoose'
+import {promisify} from '../lib/promisify.js'
 
 // SCHEMA
 const userSchema =  new Schema({
   email: {type: String, required: true, unique: true},
   username: {type: String, required: true, unique: true},
-  passwordHash: {type: String, required: true},
+  passwordHash: {type: String},
   tokenSeed: {type: String,  unique: true, default: ''},
 })
 
@@ -51,8 +52,29 @@ User.createFromSignup = function (user) {
 
   return bcrypt.hash(password, 1)
   .then(passwordHash => {
-    let data = Object.assign({}, user, {passwordHash}) 
+    let data = Object.assign({}, user, {passwordHash})
     return new User(data).save()
+  })
+}
+
+User.handleOAUTH = function(data) {
+  if(!data || !data.email)
+    return Promise.reject(
+      createError(400, 'VALIDATION ERROR: missing username email or password '))
+  return User.findOne({email: data.email})
+  .then(user => {
+    if(!user)
+      throw new Error('create the user')
+    console.log('logging in account')
+    return user
+  })
+  .catch(() => {
+    // create user from the email
+    console.log('creating account')
+    return new User({
+      username: faker.internet.userName(),
+      email: data.email,
+    }).save()
   })
 }
 

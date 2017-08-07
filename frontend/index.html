@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> hackchat </title>
+</head>
+    <body>
+      <h2> log in with google </h2>
+      <script type='text/tavascpt'>
+      let a = document.createElement('a')
+      let AUTH_URL="https://accounts.google.com/o/auth2/v2/auth/"
+      let clientIDQuery='client_id=864457026862-gofijiff5mr45hv12deipacu9h615pbi.apps.googleusercontent.com'
+      let responseTypeQuery ='response_type=code'
+      let scopeQuery = 'scope=openid%20profile%20email'
+      let promptQuery = 'prompt=consent'
+      let redirectURIQuery = 'redirect_uri=http://localhost:3000/oauth/google/code'
+      let formatedAuthRUL = `${AUTH_URL}?${clientIDQuery}&${responseTypeQuery}&${scopeQuery}&${promptQuery}&${redirectURIQuery}`
+
+      a.setAttribute('href', formatedAuthURL)
+      a.textContent = 'login with google'
+
+      document.body.appendChild(a)
+      </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> izzy's slugchat app </title>
+  </head>
+  <body>
+    <h2> login with google! </h2>
+    <script type='text/javascript'>
+      console.log('booyea')
+      let a = document.creatElement('a')
+      let AUTH_URL='https://accounts.google.com/o/oauth2/v2/auth'
+      let clientIDQuery='client_id=24372386123-7idkf4dudr023ju5prqaddgt893bo5fq.apps.googleusercontent.com'
+      let responseTypeQuery='response_type=code'
+      let scopeQuery='scope=openid%20profile%20email'
+      let promptQUery='prompt=consent'
+      let redirectURIQuery='redirect_uri=http://localhost:3000/oauth/google/code'
+      let formattedAuthURL = `${AUTH_URL}&${responseTypeQuery}&${scopeQuery}&${promptQuery}&${redirectURIQuery}`
+
+      a.setAttribute('href', formattedAuthURL)
+      a.textContent = 'login with google'
+
+      document.body.appendChild(a)
+    </script>
+  </body>
+</html>

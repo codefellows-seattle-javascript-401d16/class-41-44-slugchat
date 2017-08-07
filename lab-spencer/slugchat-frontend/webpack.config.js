@@ -1,45 +1,42 @@
 'use strict';
 
-require('dotenv').config({path: `${__dirname}/.env`});
+require('dotenv').config();
 const production = process.env.NODE_ENV === 'production';
 
 const {DefinePlugin, EnvironmentPlugin} = require('webpack');
-
-const HtmlPlugin = require('html-webpack-plugin');
-const ExtractPlugin = require('extract-text-webpack-plugin');
+const HTMLPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const UglifyPlugin = require('uglifyjs-webpack-plugin');
+const ExtractPlugin = require('extract-text-webpack-plugin');
 
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
   new ExtractPlugin('bundle-[hash].css'),
-  new HtmlPlugin({ template: `${__dirname}/src/index.html` }),
+  new HTMLPlugin({template: `${__dirname}/src/index.html`}),
   new DefinePlugin({
     __DEBUG__: JSON.stringify(!production),
-    __API_URL__: JSON.stringify('http://localhost:3000'),
+    __API_URL__: JSON.stringify(process.env.API_URL),
   }),
 ];
 
-if(production)
-  plugins = plugins.concat([new CleanPlugin(), new UglifyPlugin()]);
+if (production)
+  plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ]);
 
 module.exports = {
-  devtool: production ? undefined : 'cheap-module-eval-source-map',
-  devServer: {
-    historyApiFallback: true,
-  },
+  plugins,
   entry: `${__dirname}/src/main.js`,
+  devServer: { historyApiFallback: true  },
+  devtool: production ? undefined : 'cheap-module-eval-source-map',
   output: {
     path: `${__dirname}/build`,
-    filename: `bundle-[hash].js`,
-    publicPath: process.env.CDN_URL ? process.env.CDN_URL : '/',
+    filename: 'bundle-[hash].js',
+    publicPath: process.env.CDN_URL,
   },
-  plugins,
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_module/,
         loader: 'babel-loader',
       },
       {
@@ -77,7 +74,7 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {name: 'audio/[name].[ext]'},
+            options: { name: 'audio/[name].[ext]' },
           },
         ],
       },

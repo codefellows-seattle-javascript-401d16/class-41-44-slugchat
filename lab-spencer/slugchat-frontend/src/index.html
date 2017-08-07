@@ -1,8 +1,45 @@
+<DOCTYPE html>
 <html>
   <head>
     <title>Google OAuth</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <script type='text/javascript'>
+        const readCookie = (name) => {
+          var nameEQ = name + '=';
+          var ca = document.cookie.split(';');
+          for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+          }
+          return null;
+        };
+
+        let token = readCookie('X-Sluggram-Token');
+
+        const googParams = {
+          AUTH_URL: 'https://accounts.google.com/o/oauth2/v2/auth',
+          clientIDQuery: 'client_id=1045810800574-idcq9cgc3t1uf9om5l8uqo5fm0tr8ioe.apps.googleusercontent.com',
+          responseTypeQuery: 'response_type=code',
+          scopeQuery: 'scope=openid%20profile%20email',
+          // promptQuery: 'promp=consent',
+          redirectURIQuery: 'redirect_uri=http://localhost:3000/oauth/google/code',
+        };
+        const formattedUrl = `${googParams.AUTH_URL}?${googParams.clientIDQuery}&${googParams.responseTypeQuery}&${googParams.scopeQuery}&${googParams.redirectURIQuery}`;
+
+        if(!token) {
+          let a = document.createElement('a');
+          a.setAttribute('href', formattedUrl);
+          a.textContent = 'You are not signed in, click here to sign in!';
+          document.body.appendChild(a);
+        } else {
+          let p = document.createElement('p');
+          p.textContent = 'Woo you are signed in!';
+          document.body.appendChild(p);
+        }
+      </script>
+    </div>
   </body>
 </html>

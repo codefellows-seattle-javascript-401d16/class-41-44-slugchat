@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Class Chat</title>
+  </head>
+  <body>
+    <h2>Login with Google</h2>
+    <script type='text/javascript'>
+      let a = document.createElement('a');
+      let AUTH_URL = 'https://accounts.google.com/o/oauth2/v2/auth';
+      let clientIDQuery = 'client_id=84481371797-6385f8c421u7vjf31ul32kqhkadkhqqe.apps.googleusercontent.com';
+      let responseTypeQuery = 'response_type=code';
+      let scopeQuery = 'scope=openid%20profile%20email';
+      let promptQuery = 'prompt=consent';
+      let redirectURIQuery = 'redirect_uri=http://localhost:3000/oauth/google/code';
+      let formattedAuthURL = `${AUTH_URL}?${clientIDQuery}&${responseTypeQuery}&${scopeQuery}&${promptQuery}&${redirectURIQuery}`
+      a.setAttribute('href', formattedAuthURL);
+      a.textContent = 'Login with Google';
+      document.body.appendChild(a);
+    </script>
+  </body>
+</html>

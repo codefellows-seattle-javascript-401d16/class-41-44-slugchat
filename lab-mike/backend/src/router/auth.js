@@ -33,7 +33,7 @@ export default new Router()
       })
       .then((user) => user.tokenCreate())
       .then((token) => {
-        res.cooke('X-Class-Chat-Token', token)
+        res.cookie('X-Class-Chat-Token', token)
         res.redirect(process.env.CLIENT_URL)
       })
       .catch((error) => {

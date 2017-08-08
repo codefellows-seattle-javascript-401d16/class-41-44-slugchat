@@ -20,7 +20,7 @@
     "css-loader": "^0.28.4",
     "dotenv": "^4.0.0",
     "enzyme": "^2.9.1",
-    "eslint": "^4.2.0",
+    "eslint": "^3.19.0 || ^4.3.0",
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
@@ -44,5 +44,10 @@
     "validator": "^8.0.0",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1"
   }
 }

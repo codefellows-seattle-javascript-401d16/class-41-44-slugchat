@@ -55,16 +55,17 @@ User.createFromSignup = function (user) {
       let data = Object.assign({}, user, {passwordHash})
       return new User(data).save()
     })
+}
 
 
 User.handleOAUTH = function(data){
   if(!data || !data.email)
-  return Promise.reject(
-    createError(400, 'VALIDATION ERROR: missing email'))
-    return User.findOne({email: data.email})
+    return Promise.reject(
+      createError(400, 'VALIDATION ERROR: missing email'))
+  return User.findOne({email: data.email})
     .then(user => {
       if(!user)
-      throw new Error('create the user')
+        throw new Error('create the user')
       console.log('log in account')
       return user
     })

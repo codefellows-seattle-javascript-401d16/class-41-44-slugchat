@@ -28,9 +28,24 @@ export default new Router()
     .set('Authorization', `Bearer ${gAuthResponse.body.access_token}`)
   })
   .then(OIdCResponse => {
-    //take the profile from the res body and run it through user model to create
+    //take the profile from the res body, send to handl O auth
+    //checks if user exists, if not, it creates one with the model
     console.log('profile: ', OIdCResponse.body);
-    // return User.handleOAuth(res.body)
+    return User.handleOAuth(OIdCResponse.body)
+  })
+  .then(user => {
+    //create a new token from users signup/login success
+    user.tokenCreate();
+  })
+  .then(token => {
+    //set the token in the cookie
+    res.cookie('X-Slugchat-Token', token);
+    //redirect the user back to the our home page
+    res.redirect(process.env.CLIENT_URL);
+  })
+  .catch((error) => {
+    console.error(error);
+    res.redirect(process.env.CLIENT_URL);
   })
 })
 .post('/signup', bodyParser.json() , (req, res, next) => {

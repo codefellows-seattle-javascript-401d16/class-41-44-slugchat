@@ -58,7 +58,24 @@ User.createFromSignup = function (user) {
 
 //Oauth methods
 User.handleOAuth = function (data) {
-  
+  console.log('break 1 data: ', data);
+  if(!data.email || !data) return Promise.reject(createError(400, 'validation error: missing email'));
+  return User.findOne({email: data.email})
+  .then(user => {
+    console.log('break 2');
+    //if no user is found, throw error to create user in the catch block below
+    if(!user) throw new Error('create new user')
+    //if user is found, return the user for login process
+    return user;
+  })
+  .catch(()=> {
+    console.log('break 3');
+    //send user info through the modle to create a new user
+    return new User({
+      username: data.given_name,
+      email: data.email,
+    })
+  })
 }
 
 // INTERFACE

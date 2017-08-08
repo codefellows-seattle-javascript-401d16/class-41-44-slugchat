@@ -1,6 +1,7 @@
 'use strict'
 
 // DEPENDECIES
+import faker from 'faker'
 import * as bcrypt from 'bcrypt'
 import {randomBytes} from 'crypto'
 import * as jwt from 'jsonwebtoken'
@@ -14,6 +15,8 @@ const userSchema =  new Schema({
   username: {type: String, required: true, unique: true},
   passwordHash: {type: String, required: true},
   tokenSeed: {type: String,  unique: true, default: ''},
+
+
 })
 
 // INSTANCE METHODS
@@ -51,7 +54,7 @@ User.createFromSignup = function (user) {
 
   return bcrypt.hash(password, 1)
   .then(passwordHash => {
-    let data = Object.assign({}, user, {passwordHash}) 
+    let data = Object.assign({}, user, {passwordHash})
     return new User(data).save()
   })
 }

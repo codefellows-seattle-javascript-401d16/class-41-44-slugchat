@@ -20,6 +20,7 @@ export default new Router()
       client_id: process.env.GOOGLE_CLIENT_ID,
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
       redirect_uri: `${process.env.API_URL}/oauth/google/code`,
+
     })
     .then(response => {
       console.log('google token data', response.body)

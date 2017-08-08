@@ -4,11 +4,11 @@ import App from './component/app';
 import appStoreCreate from './lib/app-store-create.js';
 import {Provider} from 'react-redux';
 
-let AppContainer = () => {
+let AppContainer = () => (
   <Provider store={appStoreCreate()}>
     <App />
-  </Provider>;
-};
+  </Provider>
+);
 
 ReactDOM.render(<AppContainer />, document.getElementById('root'));
 

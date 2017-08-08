@@ -4,8 +4,41 @@ import {Router} from 'express'
 import User from '../model/user.js'
 import bodyParser from 'body-parser'
 import basicAuth from '../middleware/basic-auth.js'
+import superagent from 'superagent';
 
 export default new Router()
+.get('/oauth/google/code', (req, res, next) => {
+  console.log(req.query.code);
+  if(!req.query.code) {
+    res.redirect(process.env.CLIENT_URL);
+  } else {
+    return superagent.post('https://www.googleapis.com/oauth2/v4/token')
+      .type('form')
+      .send({
+        code: req.query.code,
+        grant_type: 'authorization_code',
+        client_id: process.env.GOOGLE_CLIENT_ID,
+        client_secret: process.env.GOOGLE_CLIENT_SECRET,
+        redirect_uri: `${process.env.API_URL}/oauth/google/code`,
+      })
+      .then(gRes => { // token
+        return superagent.get('https://www.googleapis.com/plus/v1/people/me/openIdConnect')
+          .set('Authorization', `Bearer ${gRes.body.access_token}`);
+      })
+      .then(gRes => { // profile
+        return User.handleOAUTH(gRes.body);
+      })
+      .then(user => user.tokenCreate())
+      .then(token => {
+        res.cookie('X-Slugchat-Token', token);
+        res.redirect(process.env.CLIENT_URL);
+      })
+      .catch(err => {
+        console.error(err);
+        res.redirect(process.env.CLIENT_URL);
+      });
+  }
+})
 .post('/signup', bodyParser.json() , (req, res, next) => {
   new User.createFromSignup(req.body)
   .then(user => user.tokenCreate())

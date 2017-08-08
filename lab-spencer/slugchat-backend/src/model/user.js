@@ -12,7 +12,7 @@ import Mongoose, {Schema} from 'mongoose'
 const userSchema =  new Schema({
   email: {type: String, required: true, unique: true},
   username: {type: String, required: true, unique: true},
-  passwordHash: {type: String, required: true},
+  passwordHash: {type: String},
   tokenSeed: {type: String,  unique: true, default: ''},
 })
 
@@ -51,9 +51,29 @@ User.createFromSignup = function (user) {
 
   return bcrypt.hash(password, 1)
   .then(passwordHash => {
-    let data = Object.assign({}, user, {passwordHash}) 
+    let data = Object.assign({}, user, {passwordHash})
     return new User(data).save()
   })
+}
+
+User.handleOAUTH = function(authData) {
+  if(!authData || !authData.email) {
+    return Promise.reject(
+      createError(400, 'VALIDATION ERROR: No email')
+    );
+  }
+  return User.findOne({ email: authData.email })
+    .then(user => {
+      if(!user)
+        throw new Error('no user found, create it');
+      return user;
+    })
+    .catch(err => {
+      return new User({
+        email: authData.email,
+        username: authData.email,
+      }).save();
+    })
 }
 
 // INTERFACE

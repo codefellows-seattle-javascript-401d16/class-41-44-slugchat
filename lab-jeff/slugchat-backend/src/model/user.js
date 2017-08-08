@@ -1,6 +1,7 @@
 'use strict'
 
 // DEPENDECIES
+import faker from 'faker'
 import * as bcrypt from 'bcrypt'
 import {randomBytes} from 'crypto'
 import * as jwt from 'jsonwebtoken'
@@ -53,6 +54,27 @@ User.createFromSignup = function (user) {
   .then(passwordHash => {
     let data = Object.assign({}, user, {passwordHash})
     return new User(data).save()
+  })
+}
+
+User.handleOAUTH = function(data) {
+  if(!data || !data.email)
+    return Promise.reject(
+      createError(400, 'VALIDATION ERROR: missing email'))
+  return User.findOne({email: data.email})
+  .then(user => {
+    if(!user)
+      throw new Error('create the user')
+    console.log('loggin in account')
+    return user
+  })
+  .catch(() => {
+    // create user from the email
+    console.log('creating account')
+    return new User({
+      username: faker.internet.userName(),
+      email: data.email,
+    }).save()
   })
 }
 

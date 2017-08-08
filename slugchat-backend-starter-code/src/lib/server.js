@@ -17,8 +17,9 @@ const app = express()
 app.use(morgan('dev'))
 app.use(cors({
   origin: process.env.CORS_ORIGINS.split(' '),
-  credentials: true, 
+  credentials: true,
 }))
+
 
 // routers
 app.use(authRouter)
@@ -28,14 +29,14 @@ app.use(fourOhFour)
 app.use(errorHandler)
 
 const state = {
-  isOn: false, 
+  isOn: false,
   http: null,
 }
 
-// INTERFACE 
+// INTERFACE
 export const start = () => {
   return new Promise((resolve, reject) => {
-    if (state.isOn) 
+    if (state.isOn)
       return reject(new Error('USAGE ERROR: the state is on'))
     state.isOn = true
     mongo.start()

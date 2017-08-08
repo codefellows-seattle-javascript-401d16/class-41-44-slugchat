@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import {Provider} from 'react-redux';
+import storeCreate from './lib/store-create';
 
 let AppContainer = () => (
-  <div> Oscar</div>
+  <Provder store={storeCreate()}>
+    {/* <App /> */}
+  </Provder>
 );
 
 

@@ -1,18 +1,18 @@
 'use strict'
 
 // DEPENDECIES
-import * as bcrypt from 'bcrypt'
-import {randomBytes} from 'crypto'
-import * as jwt from 'jsonwebtoken'
-import createError from 'http-errors'
-import {promisify} from '../lib/promisify.js'
-import Mongoose, {Schema} from 'mongoose'
+import * as bcrypt from 'bcrypt';
+import {randomBytes} from 'crypto';
+import * as jwt from 'jsonwebtoken';
+import createError from 'http-errors';
+import {promisify} from '../lib/promisify.js';
+import Mongoose, {Schema} from 'mongoose';
 
 // SCHEMA
 const userSchema =  new Schema({
   email: {type: String, required: true, unique: true},
   username: {type: String, required: true, unique: true},
-  passwordHash: {type: String, required: true},
+  passwordHash: {type: String},
   tokenSeed: {type: String,  unique: true, default: ''},
 })
 
@@ -51,10 +51,29 @@ User.createFromSignup = function (user) {
 
   return bcrypt.hash(password, 1)
   .then(passwordHash => {
-    let data = Object.assign({}, user, {passwordHash}) 
+    let data = Object.assign({}, user, {passwordHash})
     return new User(data).save()
   })
 }
 
-// INTERFACE
-export default User
+User.handleOAUTH = function(data) {
+  if(!data || !data.email)
+    return Promise.reject(
+      createError(400, 'VALIDATION ERROR: missing email'));
+  return User.findOne({email: data.email})
+  .then(user => {
+    if(!user)
+      throw new Error('create the user');
+    console.log('loggin in account');
+    return user;
+  })
+  .catch(() => {
+    console.log('creating account');
+    return new User({
+      username: data.email,
+      email: data.email,
+    }).save();
+  });
+};
+
+export default User;

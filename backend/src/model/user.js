@@ -57,7 +57,6 @@ User.createFromSignup = function (user) {
     })
 }
 
-
 User.handleOAUTH = function(data){
   if(!data || !data.email)
     return Promise.reject(

@@ -29,7 +29,7 @@ export const signupRequest = (user) => (dispatch) => {
   .withCredentials() // exchange cookies
   .send(user)
   .then (res => {
-    let token = util.tokenFetch('X-Slugchat-Token')
+    let token = util.cookieFetch('X-Slugchat-Token')
     if(token)
       dispatch(login(token))
     return res

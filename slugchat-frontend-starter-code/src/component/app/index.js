@@ -6,7 +6,8 @@ import * as auth from '../../action/auth'
 import * as route from '../../action/route'
 
 import LandingContainer from '../landing-container'
-import SignupContainer from '../signup-conotainer'
+import SignupContainer from '../signup-container'
+import LoginContainer from '../login-container'
 
 class App extends React.Component {
   componentDidMount(){
@@ -45,7 +46,7 @@ class App extends React.Component {
               <Route path='/landing' component={LandingContainer} />
               <Route path='/chat' component={() => <p> chat</p>} />
               <Route path='/signup' component={SignupContainer} />
-              <Route path='/login' component={() => <p> login</p>} />
+              <Route path='/login' component={LoginContainer} />
               <Route path='/settings' component={() => <p> settings</p>} />
           </Switch>
         </MemoryRouter>
@@ -65,3 +66,5 @@ let mapDispatchToProps = (dispatch) => ({
   goToChat: () => dispatch(route.switchRoute('/chat')),
   goToSettings: () => dispatch(route.switchRoute('/settings')),
 })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

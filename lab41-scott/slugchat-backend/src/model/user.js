@@ -56,5 +56,10 @@ User.createFromSignup = function (user) {
   })
 }
 
+//Oauth methods
+User.handleOAuth = function (data) {
+  
+}
+
 // INTERFACE
 export default User

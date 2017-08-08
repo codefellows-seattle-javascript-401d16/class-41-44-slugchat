@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Slugchat Lab-Steve</title>
+  </head>
+  <body>
+    <h2>Login with Google</h2>
+    <script type="text/javascript">
+      let a = document.createElement('a');
+      let AUTH_URL='https://accounts.google.com/o/oauth2/v2/auth';
+      let clientIDQuery='client_id=326846397833-hpffblofvhvcitgsl2ovrvl61mnc1i0f.apps.googleusercontent.com';
+      let responseTypeQuery='response_type=code';
+      let scopeQuery='scope=openid%20profile%20email';
+      let promptQuery='prompt=consent';
+      let redirectURIQuery='redirect_uri=http://localhost:3000/oauth/google/code';
+
+      let formatedAuthURL=`${AUTH_URL}?${clientIDQuery}&${responseTypeQuery}&${scopeQuery}&${promptQuery}&${redirectURIQuery}`;
+
+      a.setAttribute('href', formatedAuthURL);
+      a.textContent = 'Click to login with Google OAuth';
+      document.body.appendChild(a);
+      console.log(formatedAuthURL);
+    </script>
+  </body>
+</html>

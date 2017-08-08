@@ -21,9 +21,16 @@ export default new Router()
     client_secret: process.env.GOOGLE_CLIENT_SECRET,
     redirect_uri: `${process.env.API_URL}/oauth/google/code`,
   })
-  .then(response => {
-    console.log('break 1');
-    return console.log('token: ', response.body);
+  .then(gAuthResponse => {
+    console.log('token: ', gAuthResponse.body);
+    //take the token and GET the user profile from open id connect
+    return superagent.get('https://www.googleapis.com/plus/v1/people/me/openIdConnect')
+    .set('Authorization', `Bearer ${gAuthResponse.body.access_token}`)
+  })
+  .then(OIdCResponse => {
+    //take the profile from the res body and run it through user model to create
+    console.log('profile: ', OIdCResponse.body);
+    // return User.handleOAuth(res.body)
   })
 })
 .post('/signup', bodyParser.json() , (req, res, next) => {

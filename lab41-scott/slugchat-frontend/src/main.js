@@ -1,4 +1,18 @@
-'use strict';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './component/app';
+import appStoreCreate from './lib/app-store-create.js';
+import {Provider} from 'react-redux';
+
+let AppContainer = () => {
+  <Provider store={appStoreCreate()}>
+    <App />
+  </Provider>;
+};
+
+ReactDOM.render(<AppContainer />, document.getElementById('root'));
+
+
 //from the docs where the user get's sent to
 let AUTH_URL = 'https://accounts.google.com/o/oauth2/v2/auth';
 //our id that we registered our project with on the api

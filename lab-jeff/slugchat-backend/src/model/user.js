@@ -12,7 +12,7 @@ import Mongoose, {Schema} from 'mongoose'
 const userSchema =  new Schema({
   email: {type: String, required: true, unique: true},
   username: {type: String, required: true, unique: true},
-  passwordHash: {type: String, required: true},
+  passwordHash: {type: String},
   tokenSeed: {type: String,  unique: true, default: ''},
 })
 
@@ -51,7 +51,7 @@ User.createFromSignup = function (user) {
 
   return bcrypt.hash(password, 1)
   .then(passwordHash => {
-    let data = Object.assign({}, user, {passwordHash}) 
+    let data = Object.assign({}, user, {passwordHash})
     return new User(data).save()
   })
 }

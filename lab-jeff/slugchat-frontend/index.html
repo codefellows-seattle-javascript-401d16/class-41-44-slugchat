@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat App</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+    <h2>log-in with google</h2>
+    <script type="text/javascript">
+      let a = document.createElement('a')
+      let AUTH_URL='https://accounts.google.com/o/oauth2/v2/auth'
+      let clientIDQuery='client_id=287295647027-e2ua3hcvjfuo32rqtun5p8n1s5fkc1ca.apps.googleusercontent.com'
+      let responseTypeQuery='response_type=code'
+      let scopeQuery = 'scope=openid%20profile%20email'
+      let promptQuery = 'prompt=consent'
+      let redirectURIQuery = 'redirect_uri=http://localhost:3000/oauth/google/code'
+
+      let formatedAuthURL = `${AUTH_URL}?${clientIDQuery}&${responseTypeQuery}&${scopeQuery}&${promptQuery}&${redirectURIQuery}`
+
+      a.setAttribute('href',  formatedAuthURL)
+      a.textContent = 'login with google'
+
+      document.body.appendChild(a)
+    </script>
+  </body>
+</html>

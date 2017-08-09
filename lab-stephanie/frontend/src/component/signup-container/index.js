@@ -8,7 +8,7 @@ import validator from 'validator'
 
 const Tooltip = props => {
   return (
-    <div className="Tooltip">
+    <div className="tooltip">
       {props.message}
     </div>
   )
@@ -26,6 +26,7 @@ export class SignupContainer extends React.Component {
       passwordError: null,
       usernameAvailable: false,
     }
+
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.validateChange = this.validateChange.bind(this)
@@ -34,6 +35,7 @@ export class SignupContainer extends React.Component {
       250
     )
   }
+
   usernameCheckAvailable() {
     return superagent
       .get(`${__API_URL__}/usernames/${this.state.username}`)
@@ -48,16 +50,13 @@ export class SignupContainer extends React.Component {
       !this.state.emailError &&
       !this.state.passwordError
     ) {
-      console.log('handleSubmit')
+      console.log('whoat')
       return this.props.signup({
         email: this.state.email,
         username: this.state.username,
         password: this.state.password,
       })
     } else {
-      console.log(
-        'user already exists, did not pass handleSubmit in signup container'
-      )
     }
   }
 
@@ -68,23 +67,25 @@ export class SignupContainer extends React.Component {
       if (!value) {
         error = 'username can not be empty'
       } else if (!validator.isAlphanumeric(value)) {
-        error = 'username can only contain letters and numbers'
-      } else if (name === 'email') {
-        if (!value) {
-          error = 'email can not be empty'
-        }
-        if (!validator.isEmail(value)) {
-          error = 'must be a valid email'
-        }
-      } else if (name === 'password') {
-        if (!value) {
-          error = 'password can not be empty'
-        } else if (!validator.isAlphanumeric(value)) {
-          error = 'password can only contain letters and numbers'
-        }
+        error = 'username can only contain leters and numbers'
+      }
+    } else if (name === 'email') {
+      if (!value) {
+        error = 'email can not be empty'
+      }
+      if (!validator.isEmail(value)) {
+        error = 'must be a valid email'
+      }
+    } else if (name === 'password') {
+      if (!value) {
+        error = 'password can not be empty'
+      } else if (!validator.isAlphanumeric(value)) {
+        error = 'password can only contain leters and numbers'
       }
     }
+
     console.log('error', error)
+
     this.setState({ [`${name}Error`]: error })
   }
 
@@ -108,12 +109,21 @@ export class SignupContainer extends React.Component {
             onChange={this.handleChange}
           />
           <Tooltip message={this.state.usernameError} />
-          <div className="username-feedback">
+          <input
+            name="username"
+            type="text"
+            placeholder="username"
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+
+          <Tooltip message={this.state.passwordError} />
+          <div className="username-feeback">
             {util.renderIf(
               this.state.username,
               <span>
                 {this.state.username} is
-                {this.state.usernameAvailable ? ' available' : 'taken'}
+                {this.state.usernameAvailable ? ' available' : ' taken'}
               </span>
             )}
           </div>
@@ -124,7 +134,8 @@ export class SignupContainer extends React.Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <button type="submit">signup</button>
+
+          <button type="submit"> signup </button>
         </form>
       </div>
     )

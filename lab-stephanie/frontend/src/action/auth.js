@@ -7,30 +7,30 @@ export const login = token => ({
 })
 
 export const logout = () => {
-  util.cookieDelete('X-chat-app-Token')
+  util.cookieDelete('X-ChatApp-Token')
   return { type: 'LOGOUT' }
 }
 
 export const loginRequest = user => dispatch => {
   return superagent
     .get(`${__API_URL__}/login`)
-    .withCredentials()
+    .withCredentials() // exchange cookeis
     .auth(user.username, user.password)
     .then(res => {
-      let token = util.cookieFetch('X-chat-app-Token')
+      let token = util.cookieFetch('X-ChatApp-Token')
       if (token) dispatch(login(token))
       return res
     })
     .catch(util.logError)
 }
 
-export const singupRequest = user => dispatch => {
+export const signupRequest = user => dispatch => {
   return superagent
     .post(`${__API_URL__}/signup`)
-    .withCredentials()
+    .withCredentials() // exchange cookeis
     .send(user)
     .then(res => {
-      let token = util.cookieFetch('X-chat-app-Token')
+      let token = util.cookieFetch('X-ChatApp-Token')
       if (token) dispatch(login(token))
       return res
     })

@@ -53,22 +53,6 @@ User.createFromSignup = function(user) {
     return new User(data).save();
   });
 };
-User.handleOAUTH = function(data) {
-  if (!data || !data.email)
-    return Promise.reject(createError(400, 'VALIDATION ERROR: missing email'));
-  return User.findOne({ email: data.email })
-    .then(user => {
-      if (!user) throw new Error('create the user');
-      console.log('loggin in account');
-      return user;
-    })
-    .catch(() => {
-      console.log('creating account');
-      return new User({
-        username: faker.internet.userName(),
-        email: data.email
-      }).save();
-    });
-};
+
 // INTERFACE
 export default User;

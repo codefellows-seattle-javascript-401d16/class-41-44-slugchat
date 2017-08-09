@@ -5,12 +5,12 @@ import * as util from '../../lib/util.js'
 import * as auth from '../../action/auth.js'
 import * as route from '../../action/route.js'
 
-import LandingContainer from '../Landing-container'
+import LandingContainer from '../landing-container'
 import SignupContainer from '../signup-container'
 
 class App extends React.Component {
   componentDidMount() {
-    let token = util.cookieFetch('X-chat-app-Token')
+    let token = util.cookieFetch('X-ChatApp-Token')
     if (token) this.props.login(token)
   }
 
@@ -20,19 +20,19 @@ class App extends React.Component {
         <header>
           <div className="toolbar">
             <button onClick={this.toggleMenu} className="logo">
-              chat
+              slugchat
             </button>
 
-            <button className="togle-chat" onClick={this.toggleChat}>
+            <button className="toogle-chat" onClick={this.toggleChat}>
               show/hide chat
             </button>
           </div>
-          {util.rederIf(
+          {util.renderIf(
             this.props.token,
             <div className="menu">
-              <button onClick={this.props.goToChat}>chat</button>
-              <button onClick={this.props.goToSettings}>settings</button>
-              <button onClick={this.props.logout}>logout</button>
+              <button onClick={this.props.goToChat}> chat </button>
+              <button onClick={this.props.goToSettings}> settings </button>
+              <button onClick={this.props.logout}> logout </button>
             </div>
           )}
         </header>

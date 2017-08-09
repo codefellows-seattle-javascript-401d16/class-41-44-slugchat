@@ -15,12 +15,11 @@ export class LandingContainer extends React.Component {
     })
 
     let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`
-
     return (
-      <div className="Landing-container">
-        <button onClick={this.props.goToLogin}>login</button>
-        <button onClick={this.props.goToSignup}>signup</button>
-        <a href={googleLoginURL}>Login with Google</a>
+      <div className="landing-container">
+        <button onClick={this.props.goToLogin}> login </button>
+        <button onClick={this.props.goToSignup}> signup </button>
+        <a href={googleLoginURL}> login with google </a>
       </div>
     )
   }

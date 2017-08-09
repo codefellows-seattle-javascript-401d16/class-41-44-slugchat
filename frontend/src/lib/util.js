@@ -1,7 +1,7 @@
 export const renderIf = (test, component) => test ? component : undefined
 
-// export const classToggler = (options) =>
-//   Object.keys(options).filter(key => !!options[key]).join('')
+export const classToggler = (options) =>
+  Object.keys(options).filter(key => !!options[key]).join('')
 
 export const log = (...args) =>
   __DEBUG__ ? console.log(...args) : undefined
@@ -18,7 +18,7 @@ export const cookieTime = (days) => {
 
 export const cookieCreate = (name, value, days) => {
   let expires = days ?`${cookieTime(days)};` : ''
-  document.cookie = `${name}=${value};${expires} path='/'`
+  document.cookie = ` ${name}=${value};${expires} path='/'`
 }
 
 export const cookieFetch = (key) => {

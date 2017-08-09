@@ -23,13 +23,13 @@ class App extends React.Component {
             <button
               onClick={this.toggleMenu}
               className='logo'>
-      hackchat
+              hackchat
             </button>
 
             <button
               className='toggle-chat'
               onClick={this.toggleChat}>
-show/hide chat
+              show/hide chat
             </button>
           </div>
           {util.renderIf(this.props.token,

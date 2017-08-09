@@ -43,7 +43,7 @@ export class SignupContainer extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     if(!this.state.usernameError && !this.state.emailError && !this.state.passwordError){
-      console.log('whoat')
+      console.log('handleSubmit')
       return this.props.signup({
         email: this.state.email,
         username: this.state.username,
@@ -51,6 +51,34 @@ export class SignupContainer extends React.Component {
       })
     } else {
     }
+  }
+
+  validateChange(e){
+    let {name, value} = e.target
+    let error = null
+    if(name === 'username'){
+      if(!value) {
+        error = 'username can not be empty'
+      } else if (!validator.isAlphanumeric(value)) {
+        error = 'username can only contain leters and numbers'
+      }
+    } else if (name === 'email'){
+      if(!value){
+        error = 'email can not be empty'
+      } if (!validator.isEmail(value)) {
+        error = 'must be a valid email'
+      }
+    } else if (name === 'password') {
+      if(!value){
+        error = 'password can not be empty'
+      } else if (!validator.isAlphanumeric(value)){
+        error = 'password can only contain leters and numbers'
+      }
+    }
+
+    console.log('error', error)
+
+    this.setState({[`${name}Error`]: error})
   }
 
   handleChange(e){

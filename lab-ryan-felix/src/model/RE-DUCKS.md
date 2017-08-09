@@ -23,3 +23,9 @@ Basically:
     * optional
   * `foo.test.js` defines tests for this slice of state
 * This is all intended to make the app more maintainable and extensible
+
+Personal observations/opinions:
+
+* It would make more sense to me if the public interface (`operations.js` + `selectors.js`) were `export`ed `default` from each re-duck's `index.js`. Reducers are only used internally within the state manager, while the public interface is used all over the app.
+* I like the broad strokes of this setup; it makes more sense to me to keep things that are related to each other close to each other.
+* I don't think it should be considered necessary to rigidly adhere to the file structure listed above. It's overkill for less complicated state slices, like the `route` one in this app. I think in those cases we could combine actions/operations/types/selectors into one `interface.js`. The downside is having to rewrite boilerplate (imports) if a state slice does become complex enough that splitting those into their own files is justified.

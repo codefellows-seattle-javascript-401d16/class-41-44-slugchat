@@ -1,6 +1,10 @@
 
 build/
 
+# file that randomly appeared in src/view/lib for no apparent reason
+# (copied from an entirely different directory)
+nbc.csv
+
 # Created by https://www.gitignore.io/api/node,linux
 
 ### Linux ###

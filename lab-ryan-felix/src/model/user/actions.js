@@ -1,9 +1,9 @@
 import types from './types.js';
-import cookies from '../lib/cookies.js';
+import cookies from '../../lib/cookies.js';
 
 const login = token => ({
   type: types.LOGIN,
-  payload: { token },
+  payload: token,
 });
 
 const logout = () => {

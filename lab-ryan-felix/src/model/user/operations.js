@@ -1,6 +1,6 @@
 import superagent from 'superagent';
 
-import cookies from '../lib/cookies.js';
+import cookies from '../../lib/cookies.js';
 import { log, error } from '../../lib/loggers.js';
 
 import actions from './actions.js';

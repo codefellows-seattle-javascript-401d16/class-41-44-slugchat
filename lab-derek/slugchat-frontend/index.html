@@ -1,26 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title> slugchat - derek </title>
+    <title> Slugchat </title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="slugbyte@slugbyte.com" />
   </head>
-  <body>
-    <h2> login with google </h2>
-    <script type="text/javascript">
-      let a = document.createElement('a')
-      let AUTH_URL='http://accounts.google.com/o/oauth2/v2/auth'
-      let clientIDQuery='client_id=297440964554-i2sgraqok6kbpnu99dvj5i69bps8rqe5.apps.googleusercontent.com'
-      let responseTypeQuery='response_type=code'
-      let scopeQuery='scope=openid%20profile%20email'
-      let promptQuery='prompt-consent'
-      let redirectURIQuery='redirect_uri=http://localhost:3000/oath/google/code'
-
-      let formatedAuthURL = `${AUTH_URL}?${clientIDQuery}&${responseTypeQuery}&${scopeQuery}&${promptQuery}&${redirectURIQuery}`
-
-      a.setAttribute('href', formatedAuthURL)
-      a.textContent = 'login with google'
-
-      document.body.appendChild(a)
-    </script>
-  </body>
+  <body><div id="root"></div></body>
 </html>

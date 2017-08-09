@@ -4,7 +4,7 @@ export default (state=null, {type, payload}) => {
       return payload
     case 'LOGOUT':
       return null
-    default:
+    default: 
       return state
   }
 }

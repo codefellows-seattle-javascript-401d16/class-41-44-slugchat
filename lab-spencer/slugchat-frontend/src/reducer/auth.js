@@ -3,7 +3,7 @@ export default (state = null, {type, payload}) => {
     case 'SIGNIN':
       return payload;
     case 'SIGNOUT':
-      return undefined;
+      return null;
     default:
       return state;
   }

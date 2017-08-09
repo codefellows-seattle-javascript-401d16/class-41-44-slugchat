@@ -12,14 +12,14 @@ export const readCookie = (name) => {
 export const renderIf = (test, component) =>
   test ? component : undefined;
 
-export const log = () =>
+export const log = (...args) =>
   __DEBUG__
-  ? console.log(arguments)
+  ? console.log(args)
   : undefined;
 
-  export const logError = () =>
+  export const logError = (...args) =>
     __DEBUG__
-    ? console.error(arguments)
+    ? console.error(args)
     : undefined;
 
     export const cookieTime = (days) => {

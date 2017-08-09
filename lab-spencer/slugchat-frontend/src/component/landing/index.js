@@ -1,5 +1,7 @@
 import React from 'react';
-import {connect} from 'redux';
+import {connect} from 'react-redux';
+import * as auth from '../../action/auth.js';
+import * as util from '../../lib/util.js';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -17,19 +19,22 @@ class Landing extends React.Component {
     };
     const formattedUrl = `${googParams.AUTH_URL}?${googParams.clientIDQuery}&${googParams.responseTypeQuery}&${googParams.scopeQuery}&${googParams.redirectURIQuery}`;
 
-    <div className='login-container'>
-      {util.renderIf(token,
+    return (
+      <div className='signin-container'>
+      {util.renderIf(this.props.token,
         <div>
           <h1>Woo! You are logged in!</h1>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <button onClick={this.props.signOut}>Sign Out</button>
+        </div>
       )}
-      {util.renderIf(!token,
+      {util.renderIf(!this.props.token,
         <div>
           <h1>You are not signed in!</h1>
           <a href={formattedUrl}>Sign in with google!</a>
         </div>
       )}
-    </div>
+      </div>
+    );
   }
 }
 
@@ -39,8 +44,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: token => dispatch(auth.login(token)),
-  logout: () => dispatch(auth.logout()),
+  signIn: token => dispatch(auth.signIn(token)),
+  signOut: () => dispatch(auth.signOut()),
   goToLanding: () => dispatch(route.switchRoute('/landing')),
   goToChat: () => dispatch(route.switchRoute('/chat')),
 });

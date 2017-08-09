@@ -133,6 +133,7 @@ export class SignupContainer extends React.Component {
 
 
 export const mapStateToProps = (state) => ({})
+
 export const mapDispatchToProps = (dispatch) => ({
   signup: (user) => dispatch(auth.signupRequest(user)),
 })

@@ -5,8 +5,6 @@ import * as querystring from 'querystring';
 
 export class Landing extends React.Component {
   render(){
-    console.log('api url:', __API_URL__);
-    console.log('googs id:', __GOOGLE_CLIENT_ID__);
     let googleLoginBaseURL='https://accounts.google.com/o/oauth2/v2/auth';
     let googleLoginQuery = querystring.stringify({
       client_id: __GOOGLE_CLIENT_ID__,

@@ -5,7 +5,7 @@ export default (state='/landing', action) => {
 
   switch (type) {
   case 'LOGIN':
-    return '/chat/';
+    return '/chat';
 
   case 'LOGOUT':
     return '/landing';

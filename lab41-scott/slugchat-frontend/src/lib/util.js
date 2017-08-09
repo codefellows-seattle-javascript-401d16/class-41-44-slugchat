@@ -22,8 +22,11 @@ export const cookieCreate = (name, value, days) => {
 };
 
 export const cookieFetch = (key) => {
+  console.log('key: ', key);
+  console.log('object assign: ', Object.assign(...document.cookie.split(';')));
   let cookies = Object.assign(...document.cookie.split(';')
     .map(cookie => {
+      console.log('cookie: ', cookie);
       let [key, value] = cookie.split('=');
       return {[key.trim()]: value};
     }));

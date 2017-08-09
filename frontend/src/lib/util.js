@@ -13,12 +13,12 @@ export const cookieTime = (days) => {
   let result = new Date()
   let millisecondsPerDay = 86400000
   result.setTime(result.getTime() + (days * millisecondsPerDay))
-  return result.toUTCSting()
+  return result.toUTCString()
 }
 
 export const cookieCreate = (name, value, days) => {
-  let expires = days ?`${cookieTime(days)};` : ''
-  document.cookie = ` ${name}=${value};${expires} path='/'`
+  let expires = days ?` ${cookieTime(days)};` : ''
+  document.cookie = `${name}=${value};${expires} path='/'`
 }
 
 export const cookieFetch = (key) => {
@@ -29,6 +29,7 @@ export const cookieFetch = (key) => {
     }))
   return cookies[key]
 }
+
 export const cookieDelete = (key) => [
   document.cookie = `${key}=; expires=Thur, 01 Jan 1970 00:00:00 GMT`,
 ]

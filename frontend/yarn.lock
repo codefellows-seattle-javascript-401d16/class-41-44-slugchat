@@ -2224,7 +2224,7 @@ eslint@^1.6.0:
     user-home "^2.0.0"
     xml-escape "~1.0.0"
 
-eslint@^4.2.0:
+eslint@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.4.1.tgz#99cd7eafcffca2ff99a5c8f5f2a474d6364b4bd3"
   dependencies:

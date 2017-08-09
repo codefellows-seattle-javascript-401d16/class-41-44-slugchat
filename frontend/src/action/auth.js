@@ -34,5 +34,5 @@ export const signupRequest = (user) => (dispatch) => {
         dispatch(login(token))
       return res
     })
-    .cath(util.logError)
+    .catch(util.logError)
 }

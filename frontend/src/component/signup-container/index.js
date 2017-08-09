@@ -43,14 +43,13 @@ export class SignupContainer extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     if(!this.state.usernameError && !this.state.emailError && !this.state.passwordError){
-      console.log('handleSubmit')
+      console.log('handleSubmit', this.state)
       return this.props.signup({
         email: this.state.email,
         username: this.state.username,
         password: this.state.password,
       })
-    } else {
-    }
+    } else {}
   }
 
   validateChange(e){
@@ -76,8 +75,6 @@ export class SignupContainer extends React.Component {
       }
     }
 
-    console.log('error', error)
-
     this.setState({[`${name}Error`]: error})
   }
 
@@ -90,14 +87,40 @@ export class SignupContainer extends React.Component {
   }
 
   render(){
-    return(
+    return (
       <div className='signup-container'>
         <form onSubmit={this.handleSubmit}>
+          <Tooltip message={this.state.emailError} />
           <input
             name='email'
             type='email'
             placeholder='email'
             value={this.state.email}
+            onChange={this.handleChange}
+          />
+          <Tooltip message={this.state.usernameError} />
+          <input
+            name='username'
+            type='text'
+            placeholder='username'
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+
+          <Tooltip message={this.state.passwordError} />
+          <div className='username-feeback'>
+            {util.renderIf(this.state.username,
+              <span>
+                {this.state.username} is
+                { this.state.usernameAvailable ? ' available' : ' taken' }
+              </span>
+            )}
+          </div>
+          <input
+            name='password'
+            type='password'
+            placeholder='password'
+            value={this.state.password}
             onChange={this.handleChange}
           />
 
@@ -107,6 +130,7 @@ export class SignupContainer extends React.Component {
     )
   }
 }
+
 
 export const mapStateToProps = (state) => ({})
 export const mapDispatchToProps = (dispatch) => ({

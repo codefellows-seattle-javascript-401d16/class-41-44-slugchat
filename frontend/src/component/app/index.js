@@ -10,18 +10,20 @@ import SignupContainer from '../signup-container'
 
 class App extends React.Component {
   componentDidMount(){
+    console.log('APP CLASS')
     let token = util.cookieFetch('X-token')
     if(token)
       this.props.login(token)
+    console.log('APP PROPS', this.props)
   }
 
   render(){
+    console.log(this.props)
     return(
       <div className='app'>
         <header>
           <div className='toolbar'>
-            <button
-              onClick={this.toggleMenu}
+            <button onClick={this.toggleMenu}
               className='logo'>
               hackchat
             </button>
@@ -66,4 +68,4 @@ let mapDispatchToProps = (dispatch) => ({
   goToSettings: () => dispatch(route.switchRoute('/settings')),
 })
 
-export default connect(mapStateToProps, mapStateToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

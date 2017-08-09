@@ -19,7 +19,7 @@ export class LandingContainer extends React.Component {
       <div className='landing-container'>
         <button onClick={this.props.goToLogin}> login </button>
         <button onClick={this.props.goToSignup}> signup </button>
-        <a href={googleLoginURL}> login with google </a>
+        <a href={googleLoginURL}> login google </a>
       </div>
     )
   }

@@ -7,5 +7,6 @@ export default ( state = '/landing', {type, payload}) => {
   case 'SWITCH_ROUTE':
     return payload;
   default:
+    return state;
   }
 };

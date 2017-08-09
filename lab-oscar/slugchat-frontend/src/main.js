@@ -2,27 +2,12 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import {Provider} from 'react-redux';
 import storeCreate from './lib/store-create';
+import App from './component/app';
 
 let AppContainer = () => (
-  <Provder store={storeCreate()}>
-    {/* <App /> */}
-  </Provder>
+  <Provider store={storeCreate()}>
+    <App />
+  </Provider>
 );
-
-
-
-
-// import './style/main.scss'
-// import React from 'react'
-// import ReactDom from 'react-dom'
-// import App from './component/app'
-// import {Provider} from 'react-redux'
-// import storeCreate from './lib/store-create'
-//
-// let AppContainer = () => (
-//   <Provider store={storeCreate()}>
-//     <App/>
-//   </Provider>
-// )
 
 ReactDom.render( <AppContainer/> , document.getElementById('root'));

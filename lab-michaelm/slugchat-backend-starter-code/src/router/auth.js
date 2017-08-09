@@ -50,10 +50,10 @@ export default new Router()
       .catch(next);
   })
   .get('/usernames/:username', (req, res, next) => {
-    User.findOne({username: username})
+    User.findOne(req.params)
       .then(user => {
         if(!user)
-          return res.sendStatus(409);
+          return res.sendStatus(404);
         return res.sendStatus(200);
       })
       .catch(next);
@@ -65,4 +65,4 @@ export default new Router()
         res.send(token);
       })
       .catch(next);
-});
+  });

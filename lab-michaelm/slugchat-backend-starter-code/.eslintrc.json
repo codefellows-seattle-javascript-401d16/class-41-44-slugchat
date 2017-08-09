@@ -1,6 +1,5 @@
 {
   "rules": {
-<<<<<<< HEAD
     "react/prop-types": [0],
     "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     "comma-dangle": ["error", "always-multiline"],
@@ -10,18 +9,6 @@
     "semi": ["error", "always"]
   },
   "plugins": [ "react" ],
-=======
-    "quotes": ["error", "single", {
-      "allowTemplateLiterals": true
-    }],
-    "comma-dangle": ["error", "always-multiline"],
-    "no-console": "off",
-    "no-unused-vars": "off",
-    "indent": ["error", 2],
-    "semi": ["error", "always"]
-  },
-  "plugins": ["react"],
->>>>>>> master
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
@@ -42,11 +29,6 @@
     "__DEBUG__": false
   },
   "extends": [
-<<<<<<< HEAD
     "eslint:recommended"
-=======
-    "eslint:recommended",
-    "plugin:react/recommended"
->>>>>>> master
   ]
 }

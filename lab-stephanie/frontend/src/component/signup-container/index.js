@@ -50,7 +50,6 @@ export class SignupContainer extends React.Component {
       !this.state.emailError &&
       !this.state.passwordError
     ) {
-      console.log('whoat')
       return this.props.signup({
         email: this.state.email,
         username: this.state.username,

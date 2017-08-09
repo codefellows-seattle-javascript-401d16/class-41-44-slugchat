@@ -41,4 +41,8 @@ export default new Router()
         res.redirect(process.env.CLIENT_URL)
       })
     }
-  })s
+  })
+
+  .post('/signup', bodyParser.json() , (req, res, next) => {
+    new User.createFromSignup(req.body)
+    .then(user => user.tokenCreate())

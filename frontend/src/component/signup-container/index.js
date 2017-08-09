@@ -46,8 +46,8 @@ export class SignupContainer extends React.Component {
       console.log('handleSubmit', this.state)
       return this.props.signup({
         email: this.state.email,
-        // username: this.state.username,
-        // password: this.state.password,
+        username: this.state.username,
+        password: this.state.password,
       })
     } else {}
   }

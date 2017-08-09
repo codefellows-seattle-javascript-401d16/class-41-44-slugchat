@@ -32,8 +32,8 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  goToLogin: () => dispatch(route.switchRoute('/login')),
-  goToSignup: () => dispatch(route.switchRoute('/signup')),
+  goToLogin: () => dispatch(route.routeSwitch('/login')),
+  goToSignup: () => dispatch(route.routeSwitch('/signup')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);

@@ -3,6 +3,7 @@ import * as util from '../../lib/util.js';
 import * as auth from '../../action/auth-action.js';
 import * as route from '../../action/route-action.js';
 import Landing from '../landing';
+import SignupForm from '../signup-form';
 import {connect} from 'react-redux';
 import {MemoryRouter, Switch, Route} from 'react-router-dom';
 
@@ -54,7 +55,7 @@ class App extends React.Component{
             <Switch location={{pathname: this.props.route}}>
               <Route path='/landing' component={Landing} />
               <Route path='/chat' component={() => <p> Chat page </p>} />
-              <Route path='/signup' component={() => <p> Sign up form </p>} />
+              <Route path='/signup' component={SignupForm} />
               <Route path='/login' component={() => <p> Login form </p>} />
               <Route path='/settings' component={() => <p> Settings page </p>}/>
             </Switch>

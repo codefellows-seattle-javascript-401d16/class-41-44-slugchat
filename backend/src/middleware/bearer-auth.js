@@ -13,12 +13,12 @@ export default (req, res, next) => {
     return next(createError(400, 'AUTH ERROR: not bearer auth'))
 
   promisify(jwt.verify)(token, process.env.SECRET)
-  .then(({randomHash}) => User.findOne({randomHash}))
-  .then((user) => {
-    if(!user)
-      throw createError(401, 'AUTH ERROR: user not found')
-    req.user = user
-    next()
-  })
-  .catch(err => createError(401, err))
+    .then(({randomHash}) => User.findOne({randomHash}))
+    .then((user) => {
+      if(!user)
+        throw createError(401, 'AUTH ERROR: user not found')
+      req.user = user
+      next()
+    })
+    .catch(err => createError(401, err))
 }

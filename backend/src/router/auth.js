@@ -1,18 +1,20 @@
 'use strict'
 
 import {Router} from 'express'
-import superagent from 'superagent'
 import User from '../model/user.js'
 import bodyParser from 'body-parser'
 import basicAuth from '../middleware/basic-auth.js'
+import superagent from 'superagent'
 
 export default new Router()
   .get('/oauth/google/code', (req, res, next) => {
     console.log('req.query', req.query)
     if(!req.query.code) {
+    // user has denied access
       res.redirect(process.env.CLIENT_URL)
     } else {
-      superagent.post('https://googleapis.com/oauth2/v4/token')
+    // exchange the code for a google access token
+      superagent.post('https://www.googleapis.com/oauth2/v4/token')
         .type('form')
         .send({
           code: req.query.code,
@@ -23,16 +25,18 @@ export default new Router()
         })
         .then(response => {
           console.log('google token data', response.body)
+          // get the user profile
           return superagent.get('https://www.googleapis.com/plus/v1/people/me/openIdConnect')
-            .set('Authorizaton', `Bearer ${response.body.access_token}`)
+            .set('Authorization', `Bearer ${response.body.access_token}`)
         })
         .then(response => {
           console.log('google profile', response.body)
+          // login or create user from profile
           return User.handleOAUTH(response.body)
         })
         .then(user => user.tokenCreate())
         .then(token => {
-          res.cookie('X-Token', token)
+          res.cookie('X-Slugchat-Token', token)
           res.redirect(process.env.CLIENT_URL)
         })
         .catch((error) => {
@@ -45,26 +49,25 @@ export default new Router()
     new User.createFromSignup(req.body)
       .then(user => user.tokenCreate())
       .then(token => {
-        res.cookie('X-Token', token)
+        res.cookie('X-Slugchat-Token', token)
         res.send(token)
       })
       .catch(next)
   })
   .get('/login', basicAuth, (req, res, next) => {
-    console.log('AT FIRST GET')
     req.user.tokenCreate()
       .then((token) => {
-        res.cookie('X-Token', token)
+        res.cookie('X-Slugchat-Token', token)
         res.send(token)
       })
       .catch(next)
   })
-  // .get('/usernames/:username', (req, res, next) => {
-  //   User.findOne({username: username})
-  //     .then(user => {
-  //       if(!user)
-  //         return res.sendStatus(409)
-  //       return res.sendStatus(200)
-  //     })
-  //     .catch(next)
-  // })
+  .get('/usernames/:username', (req, res, next) => {
+    User.findOne({username: req.params.username})
+      .then(user => {
+        if(!user)
+          return res.sendStatus(200)
+        return res.sendStatus(409)
+      })
+      .catch(next)
+  })

@@ -12,10 +12,7 @@ class App extends React.Component{
   componentDidMount(){
     let token = util.cookieFetch('X-Slugchat-Token');
     console.log('app token: ', token);
-    if(token===undefined){
-      console.log('if block');
-      this.props.login(token);
-    }
+    if(token)this.props.login(token);
     console.log('after token');
   }
 

@@ -4,7 +4,6 @@ import App from './component/app';
 import appStoreCreate from './lib/app-store-create.js';
 import {Provider} from 'react-redux';
 //import socket io
-import './lib/io.js';
 
 let AppContainer = () => (
   <Provider store={appStoreCreate()}>

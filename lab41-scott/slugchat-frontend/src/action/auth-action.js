@@ -11,6 +11,7 @@ export const logout = () => {
   util.cookieDelete('X-Slugchat-Token');
   return {
     type: 'LOGIN',
+    payload: null,
   };
 };
 

@@ -6,8 +6,8 @@ import storeCreate from './lib/store-create';
 
 let AppContainer = () => (
   <Provider store={storeCreate} >
-    <App/>
+    <App />
   </Provider>
 );
 
-ReactDom.render( <AppContainer />, document.getelementById('root'));
+ReactDom.render( <AppContainer />, document.getElementById('root'));

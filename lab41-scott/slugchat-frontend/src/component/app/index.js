@@ -11,13 +11,11 @@ class App extends React.Component{
 
   componentDidMount(){
     let token = util.cookieFetch('X-Slugchat-Token');
-    console.log('app token?: ', token);
-    console.log('app token: ', token===true);
+    console.log('app token: ', token);
     if(token===undefined){
       console.log('if block');
       this.props.login(token);
     }
-
     console.log('after token');
   }
 
@@ -44,12 +42,14 @@ class App extends React.Component{
           Show Slug Chat
           </button>
         </header>
-        menu to show when user is logged in:
-        <div className='menu'>
-          <button onClick={this.props.goToChat}> CHAT </button>
-          <button onClick={this.props.goToSettings}> SETTINGS </button>
-          <button onClick={this.props.logout}> LOGOUT </button>
-        </div>
+        {util.renderIf(this.props.auth,
+          <div className='menu'>
+          Youre logged in menu:
+            <button onClick={this.props.goToChat}> CHAT </button>
+            <button onClick={this.props.goToSettings}> SETTINGS </button>
+            <button onClick={this.props.logout}> LOGOUT </button>
+          </div>
+        )}
         <main className='main'>
           <br></br>
           This is what route youre on:

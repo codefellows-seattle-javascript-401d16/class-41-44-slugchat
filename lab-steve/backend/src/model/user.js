@@ -84,11 +84,5 @@ User.handleOAUTH = function(profile) {
     });
 };
 
-
-
-
-
-
-
 // INTERFACE
 export default User;

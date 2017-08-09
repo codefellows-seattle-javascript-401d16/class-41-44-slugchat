@@ -16,14 +16,14 @@ export default (req, res, next) => {
     return next(createError(401, 'AUTH ERROR: username or password missing'))
 
   User.findOne({username})
-  .then(user => {
-    if(!user)
-      throw createError(401, 'AUTH ERROR: user not found')
-    return user.passwordCompare(password)
-  })
-  .then(user => {
-    req.user = user
-    next()
-  })
-  .catch(next)
+    .then(user => {
+      if(!user)
+        throw createError(401, 'AUTH ERROR: user not found')
+      return user.passwordCompare(password)
+    })
+    .then(user => {
+      req.user = user
+      next()
+    })
+    .catch(next)
 }

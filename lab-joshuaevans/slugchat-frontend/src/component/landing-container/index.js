@@ -1,7 +1,17 @@
 import React from 'react';
 import * as querystring from 'querystring';
 import { connect } from 'react-redux';
+import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper';
+import Menu from 'material-ui/Menu';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import * as route from '../../action/route.js';
+
+const style = {
+  display: 'inline-block',
+  margin: '16px 32px 16px 0',
+};
 
 class LandingContainer extends React.Component {
   render() {
@@ -17,9 +27,15 @@ class LandingContainer extends React.Component {
     const googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
     return (
       <div className="landing-container">
-        <button onClick={this.props.goToLogin}> login </button>
-        <button onClick={this.props.goToSignup}> signup </button>
-        <a href={googleLoginURL} > login with google </a>
+        <MuiThemeProvider>
+          <Paper style={style}>
+            <Menu>
+              <MenuItem onClick={this.props.goToLogin} primaryText="login" />
+              <MenuItem onClick={this.props.goToSignup} primaryText="signup" />
+              <MenuItem primaryText="login with google" href={googleLoginURL} alt="google login" />
+            </Menu>
+          </Paper>
+        </MuiThemeProvider>
       </div>
     );
   }

@@ -1,10 +1,10 @@
-'use strict'
+'use strict';
 
-import {Router} from 'express'
-import User from '../model/user.js'
-import bodyParser from 'body-parser'
-import basicAuth from '../middleware/basic-auth.js'
-import superagent from 'superagent'
+import {Router} from 'express';
+import User from '../model/user.js';
+import bodyParser from 'body-parser';
+import basicAuth from '../middleware/basic-auth.js';
+import superagent from 'superagent';
 
 export default new Router()
 .get('/oauth/google/code', (req, res, next) => {
@@ -33,7 +33,7 @@ export default new Router()
       })
       .then((user) => user.tokenCreate())
       .then((token) => {
-        res.cookie('X-Class-Chat-Token', token)
+        res.cookie('X-Slugchat-Token', token)
         res.redirect(process.env.CLIENT_URL)
       })
       .catch((error) => {

@@ -10,7 +10,7 @@ export default (state='/landing', action) => {
   case 'LOGOUT':
     return '/landing';
 
-  case 'SWITCH_ROUTE':
+  case 'ROUTE_SWITCH':
     return payload;
 
   default: return state;

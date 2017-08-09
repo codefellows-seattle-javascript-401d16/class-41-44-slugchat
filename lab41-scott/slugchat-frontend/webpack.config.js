@@ -1,13 +1,13 @@
-'use strict'
+'use strict';
 
-require('dotenv').config()
-const production = process.env.NODE_ENV === 'production'
+require('dotenv').config();
+const production = process.env.NODE_ENV === 'production';
 
-const {DefinePlugin, EnvironmentPlugin} = require('webpack')
-const HTMLPlugin = require('html-webpack-plugin')
-const CleanPlugin = require('clean-webpack-plugin')
-const UglifyPlugin = require('uglifyjs-webpack-plugin')
-const ExtractPlugin = require('extract-text-webpack-plugin')
+const {DefinePlugin, EnvironmentPlugin} = require('webpack');
+const HTMLPlugin = require('html-webpack-plugin');
+const CleanPlugin = require('clean-webpack-plugin');
+const UglifyPlugin = require('uglifyjs-webpack-plugin');
+const ExtractPlugin = require('extract-text-webpack-plugin');
 
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
@@ -18,10 +18,10 @@ let plugins = [
     __API_URL__: JSON.stringify(process.env.API_URL),
     __GOOGLE_CLIENT_ID__: JSON.stringify(process.env.GOOGLE_CLIENT_ID),
   }),
-]
+];
 
 if (production)
-  plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ])
+  plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ]);
 
 module.exports = {
   plugins,
@@ -39,7 +39,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_module/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
       },
       {
@@ -53,8 +53,8 @@ module.exports = {
               options: {
                 sourceMap: true,
                 includePaths: [`${__dirname}/src/style`],
-              }
-            }
+              },
+            },
           ],
         }),
       },
@@ -100,4 +100,4 @@ module.exports = {
       },
     ],
   },
-}
+};

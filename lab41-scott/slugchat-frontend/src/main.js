@@ -30,5 +30,4 @@ let redirectURIQuery = 'redirect_uri=http://localhost:3000/oauth/google/code';
 let fullAuthURL  = `${AUTH_URL}?${clientIDQuery}&${responseTypeQuery}&${scopeQuery}&${promptQuery}&${redirectURIQuery}`;
 //create anchor tag for user to click on that holds our long href path of variables
 let a = document.getElementById('google-auth-anchor');
-a.setAttribute('href', fullAuthURL);
 // let anchor = document.body.appendChild(a);

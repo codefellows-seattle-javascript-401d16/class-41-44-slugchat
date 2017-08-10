@@ -9,7 +9,7 @@ import superagent from 'superagent';
 export default new Router()
 
   .get('/oauth/google/code', (req, res, next) => {
-    console.log('req.query: ', req.query);
+    // console.log('req.query: ', req.query);
     if(!req.query.code) {
       res.redirect(process.env.CLIENT_URL);
     } else {
@@ -33,6 +33,7 @@ export default new Router()
         })
         .then(user => user.tokenCreate())
         .then(token => {
+          console.log('tokenCreate returns: ', token);
           res.cookie('X-Slugchat-Token', token);
           res.redirect(process.env.CLIENT_URL);
         })

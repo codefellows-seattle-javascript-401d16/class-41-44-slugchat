@@ -10,10 +10,10 @@ export class LandingContainer extends React.Component {
       response_type: 'code',
       redirect_uri: `${__API_URL__}/oauth/google/code`,
       scope: 'openid profile email',
-      prompt: __DEBUG__ ? 'content' : undefined,
+      prompt: __DEBUG__ ? 'consent' : undefined,
     });
 
-    let googleLoginURL = `${__OAUTH_API__}?${googleLoginQuery}`
+    let googleLoginURL = `${__OAUTH_API__}?${googleLoginQuery}`;
     return (
       <div className='landing-container'>
         <button onClick={this.props.goToLogin}> login </button>
@@ -26,3 +26,10 @@ export class LandingContainer extends React.Component {
 
 export const mapStateToProps = (state) => ({
 });
+
+export const mapDispatchToProps = (dispatch) => ({
+  goToLogin: () => dispatch(route.switchRoute('/login')),
+  goToSignup: () => dispatch(route.switchRoute('/signup')),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingContainer);

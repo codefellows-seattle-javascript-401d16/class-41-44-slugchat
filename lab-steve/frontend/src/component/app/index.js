@@ -7,6 +7,7 @@ import * as route from '../../action/route.js';
 
 import LandingContainer from '../landing-container';
 import SignupContainer from '../signup-container';
+import LoginContainer from '../login-container';
 
 class App extends React.Component {
   componentDidMount(){
@@ -46,7 +47,7 @@ class App extends React.Component {
             <Route path='/landing' component={LandingContainer}/>
             <Route path='/chat' component={() => <p> chat </p>}/>
             <Route path='/signup' component={SignupContainer}/>
-            <Route path='/login' component={() => <p> login </p>}/>
+            <Route path='/login' component={LoginContainer}/>
             <Route path='/settings' component={() => <p> settings </p>}/>
           </Switch>
         </MemoryRouter>

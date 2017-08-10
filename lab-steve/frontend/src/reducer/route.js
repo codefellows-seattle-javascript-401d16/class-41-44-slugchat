@@ -1,4 +1,4 @@
-export default (state='/signup', {type, payload}) => {
+export default (state='/landing', {type, payload}) => {
   switch(type){
   case 'LOGIN':
     return '/chat';

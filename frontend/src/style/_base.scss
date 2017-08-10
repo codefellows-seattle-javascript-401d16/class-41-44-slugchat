@@ -10,7 +10,7 @@ em { font-style: italic; }
 strong { font-weight: bold; }
 
 body {
-  background: $color-white;
+  background: $color-background;
   // seting the size of ems on the page
   font-size: 16px;
 }
@@ -24,6 +24,13 @@ blockquote {
   h#{$i} {
     font-size: 9/($i + 2) * 1em;;
   }
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 13em;
+  line-height: 150px;
+  color: $color-white;
 }
 
 
@@ -53,6 +60,7 @@ button,input[type="submit"] {
   background: $color-lightgrey;
   padding: $pad;
   border: none;
+  color: $color-white;
 
   &:hover {
     background: $color-grey;

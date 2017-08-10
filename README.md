@@ -1,32 +1,29 @@
-401 JS --  Lab 41 OAUTH BACKEND
+OAUTH CHATBOX
 ===
 
-## Submission Instructions
-  * Work in a fork of this repository
-  * Work in a branch on your fork
-  * Write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-duncan`
-  * Submit a pull request to this repository
-  * Submit a link to your pull request on canvas
-  * Submit a question, observation, and how long you spent on canvas  
-  
-## Learning Objectives  
-* Students will learn to add Google OAuth to an express/monogo app
-
-## Requirements  
-#### Configuration  
-* create a copy of the slugchat-backend-starter-code to `/lab-<yourname>/slugchat-backend`
-* create a `/lab-<yourname>`/slugchat-fontend directory
-
-#### Feature Tasks  
+#### Features
 #### backend
-* create an app on the google dev console
- * configure oauth credentials to suport a client app on `http://localhost:8080`
- * configure oauth credentials to suport a server redirect uri  to `http://localhost:3000/oauth/google/code`
-* create a backend route `GET /oauth/google/code` for handling google oauth 
+* App on the google dev console
+* Oauth credentials to support a client app on `http://localhost:8080`
+* Oauth credentials to support a server redirect uri  to `http://localhost:3000/oauth/google/code`
+* Backend route `GET /oauth/google/code` for handling google oauth
 
-#### frontend 
-* create an index.html with an anchor tag pointing to the google authoraztion page 
- * configure the query string will correct key value pairs
+#### frontend
+* index.html with an anchor tag pointing to the google authoraztion page a query string will correct key value pairs
 
 ####  Documentation  
-Write a description of the project in your README.md
+
+OAUTH2.0
+
+OAuth is an open standard for access delegation. It servers as a way to give users the ability to grant apps access to services, without giving the apps their password.
+
+With this app I set up a Google Cloud Application that serves as a chatbox. I implemented OATH on the servers side.
+
+First the client needs to grant the application permission. To do this I gave an anchor tag that will take them to the services authorization page. The anchor tag passes the following information through a query string to the authorization server:
+* grant_type=authorization_code
+* code=<the code your recieved
+* redirect_uri=REDIRECT_URI must be same as the redirect uri your client provied
+* client_id=<your client id> tells the auth server which app is making the requests
+* client_secret=<your client secret> authenticates that the app making the request is the app registered  with the client_id
+
+Once I got an Access Toke I used it to make API calls to the service on behalf of that user.

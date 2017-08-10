@@ -15,7 +15,7 @@ let subscribers = Object.assign(userSubscribers, messageSubscribers);
 io(store, subscribers);
 
 let AppContainer = () => (
-  <Provider store={appStoreCreate()}>
+  <Provider store={store}>
     <App />
   </Provider>
 );

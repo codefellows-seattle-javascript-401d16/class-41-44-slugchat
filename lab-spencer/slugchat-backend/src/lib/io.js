@@ -11,12 +11,12 @@ export default (http, subscribers) => {
             try {
               subscriber.handler(socket)(payload);
             } catch(err) {
-              console.log('__SUBSCRIBE_ERROR__', error);
+              console.log('__SUBSCRIBE_ERROR__', err);
             }
           });
         });
     })
-    .on('error', error => {
-      console.error('__SOCKET_IO_ERROR__', error);
+    .on('error', err => {
+      console.error('__SOCKET_IO_ERROR__', err);
     });
 };

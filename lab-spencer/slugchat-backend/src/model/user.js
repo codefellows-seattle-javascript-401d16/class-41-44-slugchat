@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt'
 import {randomBytes} from 'crypto'
 import * as jwt from 'jsonwebtoken'
 import createError from 'http-errors'
-import {promisify} from '../lib/promisify.js'
+import promisify from '../lib/promisify.js'
 import Mongoose, {Schema} from 'mongoose'
 
 // SCHEMA

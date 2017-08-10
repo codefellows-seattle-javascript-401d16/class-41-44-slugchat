@@ -6,6 +6,7 @@ import * as auth from '../../action/auth.js';
 import * as route from '../../action/route.js';
 
 import Landing from '../landing';
+import Chat from '../chat';
 
 class App extends React.Component {
 
@@ -25,7 +26,7 @@ class App extends React.Component {
         <MemoryRouter>
           <Switch location={{ pathname: this.props.route }}>
             <Route path='/landing' component={Landing} />
-            <Route path='/chat' component={() => <p>Chat page</p>} />
+            <Route path='/chat' component={Chat} />
           </Switch>
         </MemoryRouter>
       </main>

@@ -4,6 +4,7 @@ import * as auth from '../../action/auth-action.js';
 import * as route from '../../action/route-action.js';
 import Landing from '../landing';
 import SignupForm from '../signup-form';
+import LoginForm from '../login-form';
 import {connect} from 'react-redux';
 import {MemoryRouter, Switch, Route} from 'react-router-dom';
 
@@ -14,7 +15,6 @@ class App extends React.Component{
     let token = util.cookieFetch('X-Slugchat-Token');
     console.log('app token: ', token);
     if(token)this.props.login(token);
-    console.log('after token');
   }
 
   toggleChat(){
@@ -56,7 +56,7 @@ class App extends React.Component{
               <Route path='/landing' component={Landing} />
               <Route path='/chat' component={() => <p> Chat page </p>} />
               <Route path='/signup' component={SignupForm} />
-              <Route path='/login' component={() => <p> Login form </p>} />
+              <Route path='/login' component={LoginForm} />
               <Route path='/settings' component={() => <p> Settings page </p>}/>
             </Switch>
           </MemoryRouter>

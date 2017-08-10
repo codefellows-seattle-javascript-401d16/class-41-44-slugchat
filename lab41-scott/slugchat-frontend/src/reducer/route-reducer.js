@@ -1,6 +1,6 @@
 //handle the route state to redirect the user.
 
-export default (state='/signup', action) => {
+export default (state='/landing', action) => {
   let {type, payload} = action;
 
   switch (type) {

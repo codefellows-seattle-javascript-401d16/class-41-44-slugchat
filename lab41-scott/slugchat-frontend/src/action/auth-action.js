@@ -16,15 +16,24 @@ export const logout = () => {
 };
 
 //async actions
-
 export const signupRequest = (userData) => (dispatch) => {
-  console.log('user Data: ', userData);
-
   return superagent.post(`${__API_URL__}/signup`)
     .withCredentials() //this lets us exchange cookies.
     .send(userData)
     .then(res => {
-      console.log('SU res: ', res);
+      let token = util.cookieFetch('X-Slugchat-Token');
+      if(token) dispatch(login(token));
+      return res;
+    })
+    .catch(console.error);
+};
+
+export const loginRequest = (userData) => (dispatch) => {
+  return superagent.get(`${__API_URL__}/login`)
+    .withCredentials()
+    .auth(userData.username, userData.password)
+    .then(res => {
+      console.log('login res: ', res);
       let token = util.cookieFetch('X-Slugchat-Token');
       if(token) dispatch(login(token));
       return res;

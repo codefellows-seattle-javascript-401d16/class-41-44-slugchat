@@ -76,5 +76,15 @@ User.handleOAUTH = function(authData) {
     })
 }
 
+User.fromToken = function(token) {
+  return promisify(jwt.verify)(token, process.env.SECRET)
+    .then(({tokenSeed}) => User.findOne({tokenSeed}))
+    .then(user => {
+      if(!user)
+        throw createError(401, 'AUTH ERROR: user not found');
+      return user;
+    });
+};
+
 // INTERFACE
 export default User

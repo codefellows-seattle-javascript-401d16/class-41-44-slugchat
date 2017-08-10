@@ -10,6 +10,16 @@ import {MemoryRouter, Switch, Route} from 'react-router-dom';
 
 
 class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      toggleChat: false,
+      toggleMenu: false,
+    };
+
+    this.toggleChat = this.toggleChat.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
 
   componentDidMount(){
     let token = util.cookieFetch('X-Slugchat-Token');
@@ -19,6 +29,11 @@ class App extends React.Component{
 
   toggleChat(){
 
+  }
+
+  toggleMenu(){
+    if(this.props.auth && !this.state.toggleMenu) this.setState({toggleMenu: true});
+    if(this.props.auth && this.state.toggleMenu) this.setState({toggleMenu: false});
   }
 
   render(){
@@ -40,7 +55,7 @@ class App extends React.Component{
           Show Slug Chat
           </button>
         </header>
-        {util.renderIf(this.props.auth,
+        {util.renderIf(this.props.auth && this.state.toggleMenu,
           <div className='menu'>
           Youre logged in menu:
             <button onClick={this.props.goToChat}> CHAT </button>

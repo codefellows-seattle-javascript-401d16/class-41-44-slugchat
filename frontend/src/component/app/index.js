@@ -11,7 +11,7 @@ import SignupContainer from '../signup-container'
 class App extends React.Component {
   componentDidMount(){
     console.log('APP CLASS')
-    let token = util.cookieFetch('X-token')
+    let token = util.cookieFetch('X-Token')
     if(token)
       this.props.login(token)
     console.log('APP PROPS', this.props)

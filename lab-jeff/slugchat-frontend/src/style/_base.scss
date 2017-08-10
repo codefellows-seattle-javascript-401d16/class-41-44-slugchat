@@ -1,0 +1,146 @@
+@import "./_vars.scss";
+
+html, body {position: relative;}
+head, script, link {display: none;}
+p {display: inline-block;}
+span, em, strong {display: inline;}
+span,em,strong {display: inline;}
+
+body {
+  background-color: #D97823;
+  font-size: 16px;
+}
+
+// @for $i from 1 through 6 {
+//   h#{$i} {
+//     font-size: calc(1em * i * 1.09);
+//   }
+// }
+
+h1 { font-size: calc(1em * 2.2); }
+h2 { font-size: calc(1em * 1.9); }
+h3 { font-size: calc(1em * 1.6); }
+h4 { font-size: calc(1em * 1.4); }
+h5 { font-size: calc(1em * 1.2); }
+h6 { font-size: calc(1em * 1.1); }
+
+blockquote {
+  display: inline-block;
+  border-left: $pad solid $color-lightgray;
+  padding-left: $pad;
+}
+
+label {
+  font-size: 1.25em;
+  font-weight: bolder;
+  margin-bottom: $pad;
+}
+
+textarea,input {
+  padding: $pad;
+  border: 1px solid $color-lightgray;
+  margin-bottom: $pad;
+}
+
+// &:focus {
+//   border: 1px solid $color-darkgray;
+// }
+
+// %::placeholder {
+//   color: $color-lightgray
+// }
+
+input::placeholder {
+  color: #aaa;
+}
+
+textarea:focus,input:focus  {
+  border: 1px solid #444;
+}
+
+textarea {
+  resize: none;
+}
+
+button,input[type="submit"] {
+  background: $color-lightgray;
+  padding: $pad;
+  border: none;
+}
+
+// &:hover {
+//
+// }
+
+button:hover,input[type="submit"]:hover {
+  background: #777;
+}
+
+button:active,input[type="submit"]:active {
+  background: #444;
+}
+
+ul,ol,li {
+  margin-left: $pad * 2;
+}
+
+li {
+  display: list-item;
+}
+
+ul li {
+ list-style: disc;
+}
+
+ol li {
+ list-style: decimal;
+}
+
+ol ol li , ul ol li {
+  list-style: lower-alpha;
+}
+
+ol ul li , ul ul li {
+  list-style: square;
+}
+
+
+/* module */
+
+.bubble {
+  padding: 0.5em;
+}
+
+.primary {
+  background: #00755D
+}
+
+.hide {
+  display: none;
+}
+
+
+.modal {
+  position: fixed;
+  height: 100%;
+  background: rgba(100, 100, 100, 0.7);
+}
+
+.modal main {
+  position: fixed;
+  padding: 1em;
+  height: 50%;
+  width: 50%;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal button {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  width: auto;
+  padding: 1em;
+}

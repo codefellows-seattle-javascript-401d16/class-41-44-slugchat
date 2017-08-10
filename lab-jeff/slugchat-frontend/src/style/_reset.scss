@@ -1,0 +1,28 @@
+@import "./_vars.scss";
+
+* {
+  position: static;
+  display: block;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+
+
+  font-size: 1em;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  white-space: normal;
+
+  background: none;
+  color: $color-black;
+  list-style: none;
+}
+
+form * :focus {
+  border: none;
+  outline: none;
+}

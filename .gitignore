@@ -2,7 +2,7 @@
 # Created by https://www.gitignore.io/api/node,linux,macos,windows,database,reactnative
 
 ### Database ###
-db  
+db
 *.accdb
 *.db
 *.dbf
@@ -118,7 +118,6 @@ typings/
 # React Native Stack Base
 ### ReactNative.Gradle Stack ###
 .gradle
-/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting

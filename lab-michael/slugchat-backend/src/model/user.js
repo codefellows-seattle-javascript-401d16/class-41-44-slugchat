@@ -7,12 +7,13 @@ import * as jwt from 'jsonwebtoken'
 import createError from 'http-errors'
 import {promisify} from '../lib/promisify.js'
 import Mongoose, {Schema} from 'mongoose'
+import faker from 'faker'
 
 // SCHEMA
 const userSchema =  new Schema({
   email: {type: String, required: true, unique: true},
   username: {type: String, required: true, unique: true},
-  passwordHash: {type: String, required: true},
+  passwordHash: {type: String },
   tokenSeed: {type: String,  unique: true, default: ''},
 })
 

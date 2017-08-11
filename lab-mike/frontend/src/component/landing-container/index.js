@@ -13,12 +13,12 @@ export class LandingContainer extends React.Component {
       scope: 'openid profile email',
       prompt: __DEBUG__ ? 'consent' : undefined,
     });
-    let googleLoginURL = `${googleLoginURL}?${googleLoginQuery}`;
+    let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
     return (
       <div className = 'landing-container'>
-        <button>Login</button>
-        <button>SignUp</button>
-        <a href={googleLoginURL}>Login with Gooogle</a>
+        <button onClick={this.props.goToLogin}>Login</button>
+        <button onClick={this.props.goToSignup}>SignUp</button>
+        <a href={googleLoginURL}>Login with Google</a>
       </div>
     );
   }

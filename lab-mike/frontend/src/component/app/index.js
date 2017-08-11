@@ -17,6 +17,13 @@ class App extends React.Component {
     return (
       <div className='app'>
         <header>
+          {util.renderIf(this.props.token,
+            <div className='menu'>
+              <button onClick={this.props.goToChat}>Chat</button>
+              <button onClick={this.props.goToSettings}>Settings</button>
+              <button onClick={this.props.logout}>LogOut</button>
+            </div>
+          )}
         </header>
         <MemoryRouter>
           <Switch location={{pathname: this.props.route}}>

@@ -24,6 +24,9 @@ export class ChatContainer extends React.Component {
       meta: false,
       content: this.state.content,
     })
+    this.setState({
+      content: '',
+    })
   }
 
   render(){
@@ -32,17 +35,17 @@ export class ChatContainer extends React.Component {
         <h1> welcome to slugchat chat </h1>
 
         <ul>
-          {this.props.chatHistory.map((item, i) => 
+          {this.props.chatHistory.map((item, i) =>
             <div key={i}>
               <span> {item.username}: </span>
               <span> {item.content} </span>
             </div>
           )}
-          
+
         </ul>
 
         <form onSubmit={this.handleSubmit}>
-          <textarea 
+          <textarea
             value={this.state.content}
             onChange={this.handleChange} />
           <button type='submit'> send </button>

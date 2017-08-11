@@ -3,6 +3,7 @@ import io from 'socket.io'
 export default (http, subscribers) => {
   return io(http)
   .on('connection', (socket) => {
+    console.log('subscribers: \n',subscribers);
     // handle the client connection
     Object.keys(subscribers)
     .map(type => ({type, handler: subscribers[type]}))

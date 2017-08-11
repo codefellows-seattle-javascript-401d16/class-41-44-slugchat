@@ -1,4 +1,4 @@
-@import "vars"; 
+@import "vars";
 
 * {
   // box model
@@ -13,7 +13,7 @@
 
   // font
   font-family: $font-primary;
-  font-size: 1em;
+  font-size: 1vw;
   font-weight: normal;
   font-style: normal;
   text-decoration: none;
@@ -31,4 +31,3 @@ form *:focus {
   border: none;
   outline: none;
 }
-

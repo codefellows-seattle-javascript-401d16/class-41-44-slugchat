@@ -9,7 +9,7 @@ import superagent from 'superagent';
 export default new Router()
 .get('/oauth/google/code', (req, res, next) => {
   console.log('req.query', req.query)
-  if(!req.query.code) {
+  if (!req.query.code) {
     res.redirect(process.env.CLIENT_URL);
   } else {
     superagent.post('https://www.googleapis.com/oauth2/v4/token')
@@ -43,7 +43,7 @@ export default new Router()
   }
 })
 
-.post('/signup', bodyParser.json() , (req, res, next) => {
+.post('/signup', bodyParser.json(), (req, res, next) => {
   new User.createFromSignup(req.body)
   .then(user => user.tokenCreate())
   .then(token => {
@@ -55,7 +55,7 @@ export default new Router()
 .get('/usernames/:username', (req, res, next) => {
   User.findOne({username: username})
   .then(user => {
-    if(!user)
+    if (!user)
       return res.sendStatus(409)
     return res.sendStatus(200)
   })

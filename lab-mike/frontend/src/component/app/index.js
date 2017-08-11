@@ -16,9 +16,11 @@ class App extends React.Component {
   render () {
     return (
       <div className='app'>
+        <header>
+        </header>
         <MemoryRouter>
           <Switch location={{pathname: this.props.route}}>
-            <Route path='/landing' component={LandingContainer} />
+            <Route path='/' component={LandingContainer} />
             <Route path='/chat' component={() => <p>Chat</p>} />
           </Switch>
         </MemoryRouter>

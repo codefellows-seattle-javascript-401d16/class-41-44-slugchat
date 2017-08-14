@@ -13,7 +13,7 @@ export class LandingContainer extends React.Component {
       scope: 'openid profile email',
       prompt: __DEBUG__ ? 'consent' : undefined,
     })
-
+    console.log(__API_URL__,'!!!');
     let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`
     return (
       <div className='landing-container'>

@@ -31,14 +31,14 @@ export class SignupContainer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.validateChange = this.validateChange.bind(this)
-    this.usernameCheckAvailable = _.debounce(this.usernameCheckAvailable.bind(this), 250)
+    // this.usernameCheckAvailable = _.debounce(this.usernameCheckAvailable.bind(this), 250)
   }
 
-  usernameCheckAvailable(){
-    return superagent.get(`${__API_URL__}/usernames/${this.state.username}`)
-    .then(() => this.setState({usernameAvailable: true}))
-    .catch(() => this.setState({usernameAvailable: false}))
-  }
+  // usernameCheckAvailable(){
+  //   return superagent.get(`${__API_URL__}/usernames/${this.state.username}`)
+  //   .then(() => this.setState({usernameAvailable: true}))
+  //   .catch(() => this.setState({usernameAvailable: false}))
+  // }
 
   handleSubmit(e){
     e.preventDefault()
@@ -61,7 +61,7 @@ export class SignupContainer extends React.Component {
         error = 'username can not be empty'
       } else if (!validator.isAlphanumeric(value)) {
         error = 'username can only contain leters and numbers'
-      } 
+      }
     } else if (name === 'email'){
       if(!value){
         error = 'email can not be empty'
@@ -85,8 +85,8 @@ export class SignupContainer extends React.Component {
     this.validateChange({...e})
     let {name, value} = e.target
     this.setState({[name]: value})
-    if(name === 'username')
-      this.usernameCheckAvailable()
+    // if(name === 'username')
+    //   this.usernameCheckAvailable()
   }
 
 
@@ -113,12 +113,6 @@ export class SignupContainer extends React.Component {
 
             <Tooltip message={this.state.passwordError} />
             <div className='username-feeback'>
-              {util.renderIf(this.state.username, 
-                <span>
-                  {this.state.username} is 
-                  { this.state.usernameAvailable ? ' available' : ' taken' }
-                </span>
-              )}
             </div>
           <input
             name='password'

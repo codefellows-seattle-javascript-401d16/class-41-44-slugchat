@@ -32,13 +32,11 @@ class App extends React.Component {
             show/hide chat
           </button>
         </div>
-        {util.renderIf(this.props.token,
           <div className='menu'>
             <button onClick={this.props.goToChat}> chat </button>
             <button onClick={this.props.goToSettings}> settings </button>
             <button onClick={this.props.logout}> logout </button>
           </div>
-        )}
       </header>
         <MemoryRouter>
           <Switch location={{pathname: this.props.route}}>
